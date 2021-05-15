@@ -14,7 +14,7 @@ fun main() {
 
             command("start") {
 
-                val result = bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "Hi there!")
+                val result = bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "Bot iniciado")
 
                 result.fold({
 
