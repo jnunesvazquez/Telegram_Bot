@@ -1,11 +1,9 @@
-import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
-
 plugins {
-    kotlin("jvm") version "1.4.32"
+    kotlin("jvm") version "1.5.0"
     application
 }
 
-group = "me.flia"
+group = "me.jjson"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -18,10 +16,6 @@ repositories {
 dependencies {
     testImplementation(kotlin("test-junit"))
     implementation ("io.github.kotlin-telegram-bot.kotlin-telegram-bot:telegram:6.0.4")
-}
-
-tasks.test {
-    useJUnit()
 }
 
 tasks.test {
