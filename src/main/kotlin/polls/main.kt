@@ -4,9 +4,12 @@ import com.github.kotlintelegrambot.dispatch
 import com.github.kotlintelegrambot.dispatcher.command
 import com.github.kotlintelegrambot.dispatcher.pollAnswer
 import com.github.kotlintelegrambot.entities.ChatId
+import com.github.kotlintelegrambot.entities.ParseMode
 import com.github.kotlintelegrambot.entities.polls.PollType.QUIZ
-import kotlin.concurrent.thread
 
+/**
+ * Funcion que nos permitira crear una instancia para crear encuestas con nuestro bot
+ */
 fun main() {
 
     val bot = bot {
@@ -21,7 +24,7 @@ fun main() {
             }
 
             //Comando que mostrara una encuesta con todos los profesores
-            command("bestpollever") {
+            command("poll") {
                 bot.sendPoll(
                     //Recoge la id del usuario que haya votado en la encuesta
                     chatId = ChatId.fromId(message.chat.id),
@@ -42,6 +45,23 @@ fun main() {
                     //Definimos la duracion de la encuesta
                     openPeriod = 60,
                     //Declaramos si la votacion es anonima o no lo es
+                    isAnonymous = false
+                )
+            }
+            command("encrust") {
+                bot.sendPoll(
+                    chatId = ChatId.fromId(message.chat.id),
+                    question = "Tus lenguajes de programacion favoritos",
+                    options = listOf(
+                        "C",
+                        "Java",
+                        "MySQL",
+                        "Kotlin",
+                        "HTML"
+                    ),
+                    openPeriod = 120,
+                    //Permite que sean escogidas varias respuestas
+                    allowsMultipleAnswers = true,
                     isAnonymous = false
                 )
             }
