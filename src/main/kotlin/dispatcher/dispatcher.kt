@@ -20,18 +20,21 @@ fun main() {
 
     val bot = bot {
 
-        token = miApyKey
+        token = miApyKey //el token indica cual es nuentro bot y a que le estamos mandando nuetros comandos
 
         dispatch {
             //Este mensaje salta cuando contestas al bot con un stiker
             message(Filter.Sticker) {
-                bot.sendMessage(ChatId.fromId(message.chat.id), text = "You have received an awesome sticker \\o/")
+                bot.sendMessage(ChatId.fromId(message.chat.id), text = "¿En serio no tienes un esticker mejor para enviame?")
             }
             //Este mensaje salta cuando reenvias el mensaje del bot o por que lo respondes en el chat
             message(Filter.Reply or Filter.Forward) {
                 bot.sendMessage(ChatId.fromId(message.chat.id), text = "Damian, tienes que aprobar a Joel y Brais")
             }
-
+            /**
+             * @param start Nombre del comando de nuestro bot
+             * Este comando retorna un texto en el que nos indica que el bor a sido iniciado
+             */
             command("start") {
 
                 val result = bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "Bot iniciado")
@@ -42,6 +45,10 @@ fun main() {
                     // do something with the error
                 })
             }
+            /**
+             * @param hola Nombre del comando de nuestro bot
+             * Este comando retorna un texto
+             */
             command("hola") {
 
                 val result = bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "Buenas dulce personita")
@@ -52,6 +59,10 @@ fun main() {
                     // do something with the error
                 })
             }
+            /**
+             * @param adios Nombre del comando de nuestro bot
+             * Este comando retorna un texto
+             */
             command("adios") {
 
                 val result = bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "Adiós dulce personita")
@@ -62,7 +73,10 @@ fun main() {
                     // do something with the error
                 })
             }
-
+            /**
+             * @param comandoconargs Nombre del comando de nuestro bot
+             * Este comando retorna un texto
+             */
             command("comandoconargs") {
                 val joinedArgs = args.joinToString() /*Crea una cadena de todos los elementos separados usando un
                 separador y usando el prefijo y sufijo dados si se suministran. Si la colección puede ser enorme, puede
@@ -72,26 +86,33 @@ fun main() {
                     if (joinedArgs.isNotBlank()) joinedArgs else "No hay texto a parte del comando"
                 bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = response)
             }
-
+            /**
+             * @param markdown Nombre del comando de nuestro bot
+             * Este comando retorna un texto
+             */
             //Altera el texto sin necesidad de un editor de texto. Solo sirve para texto incluido en el comando
             command("markdown") {
-                val markdownText = "_Cool message_: *Markdown* is `beatiful` :P"
+                val markdownText = "_Mi gran mensaje_: *Markdown* es `util a su manera`"
                 bot.sendMessage(
                     chatId = ChatId.fromId(message.chat.id),
                     text = markdownText,
                     parseMode = ParseMode.MARKDOWN
                 )
             }
-            //
+            /**
+             * @param markdown2 Nombre del comando de nuestro bot
+             * Este comando retorna un texto
+             */
+            //Version mejorada del marckdown. Lo de la mencion del usuario aun no funciona ni en la libreria de kotlinTelegram
             command("markdown2") {
                 val markdownV2Text = """
-                    *bold \*text*
-                    _italic \*text_
-                    __underline__
-                    ~strikethrough~
-                    *bold _italic bold ~italic bold strikethrough~ __underline italic bold___ bold*
-                    [inline URL](http://www.example.com/)
-                    [inline mention of a user](tg://user?id=123456789)
+                    *negrita*
+                    _italic_
+                    __subrallado__
+                    ~tachado~
+                    *negrita _italic negrita ~italic negrita tachada~ __subrallado italic negrita___ negrita*
+                    [Nuestro bot](https://github.com/jnunesvazquez/Telegram_Bot)
+                    [inline mention of a user](tg://user?id=123456789) 
                     `inline fixed-width code`
                     ```kotlin
                     fun main() {
@@ -113,20 +134,30 @@ fun main() {
                     parseMode = ParseMode.MARKDOWN_V2
                 )
             }
-            /*
-            sirve para crear dos botones
+            /**
+             * @param inlinebuttons Nombre del comando de nuestro bot
+             * Este comando retorna botones que se le puede asociar texto o un aventana emerjente con texto
              */
+            //sirve para crear dos botones
             command("inlinebuttons") {
                 val inlineKeyboardMarkup = InlineKeyboardMarkup.create(
+                    //text es el texto que aparece en el boton
+                    //callbackData Retoena el callbackQuery asociado (linea de codigo )
                     listOf(InlineKeyboardButton.CallbackData(text = "Presioname", callbackData = "Madre mia")),
-                    listOf(InlineKeyboardButton.CallbackData(text = "hola", callbackData = "showAlert"))
+                    //text es el texto que aparece en el boton
+                    //callbackData Retoena el callbackQuery asociado (linea de codigo )
+                    listOf(InlineKeyboardButton.CallbackData(text = "Hola", callbackData = "Quiero mi 10"))
                 )
                 bot.sendMessage(
                     chatId = ChatId.fromId(message.chat.id),
-                    text = "Hello, inline buttons!",
+                    text = "Mis botones, pulsalos a placer",
                     replyMarkup = inlineKeyboardMarkup
                 )
             }
+            /**
+             * @param f Nombre del comando de nuestro bot
+             * Este comando retorna un  texto y dos botones situados en donde el usuario puede escribir
+             */
             /*
             Con esto le envias tu direccion al bot y tu numero de telefono. Solo funciona por privado con el bot, en
             un grupo no funciona este comando
@@ -135,13 +166,15 @@ fun main() {
                 val keyboardMarkup = KeyboardReplyMarkup(keyboard = generateUsersButton(), resizeKeyboard = true)
                 bot.sendMessage(
                     chatId = ChatId.fromId(message.chat.id),
-                    text = "Hello, users buttons!",
+                    text = "Aqui los botones de usuarios",
                     replyMarkup = keyboardMarkup
                 )
             }
-            /*
-            Este comando sirve para poder enviar fotos con el bot
+            /**
+             * @param mediagroup Nombre del comando de nuestro bot
+             * Este comando retorna un texto y fotos
              */
+            //Este comando sirve para poder enviar fotos con el bot
             command("mediagroup") {
                 bot.sendMediaGroup(
                     chatId = ChatId.fromId(message.chat.id),
@@ -158,37 +191,45 @@ fun main() {
                     replyToMessageId = message.messageId
                 )
             }
+            /**
+             * @param Madremia Es el texto que aparece en el collbackData del boton asociado
+             * Retorna el callbackQuery
+             */
             //este texto de entrada tiene que coincidir con el texto que se le ponga al boton EN callbackData
             callbackQuery("Madre mia") {
                 val chatId = callbackQuery.message?.chat?.id ?: return@callbackQuery
                 bot.sendMessage(ChatId.fromId(chatId), callbackQuery.data)
             }
+            /**
+             * @param Quieromi10 Es el texto que aparece en el collbackData del boton asociado
+             * Retorna el callbackQuery
+             */
             //este texto de entrada tiene que coincidir con el texto que se le ponga al boton EN callbackData
             callbackQuery(
-                callbackData = "showAlert",
-                callbackAnswerText = "HelloText",
+                callbackData = "Quiero mi 10",
+                callbackAnswerText = "Por el duro esfuerzo en realizar esta tarea quiero mi 10, no espero menos que eso",
                 callbackAnswerShowAlert = true
             ) {
                 val chatId = callbackQuery.message?.chat?.id ?: return@callbackQuery
                 bot.sendMessage(ChatId.fromId(chatId), callbackQuery.data)
             }
-
-            text("ping") {
-                bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "Pong")
+            // si pones /quiero te devielve un texto
+            text("quiero") {
+                bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "Mi 10")
             }
-
+            //te devuelve la latituid y longitud de te localizacion
             location {
                 bot.sendMessage(
                     chatId = ChatId.fromId(message.chat.id),
-                    text = "Your location is (${location.latitude}, ${location.longitude})",
+                    text = "Tu localizacion es (latitud=${location.latitude}, longitud=${location.longitude})",
                     replyMarkup = ReplyKeyboardRemove()
                 )
             }
-
+            //devuelve un mensaje de texto con nuetro nombre
             contact {
                 bot.sendMessage(
                     chatId = ChatId.fromId(message.chat.id),
-                    text = "Hello, ${contact.firstName} ${contact.lastName}",
+                    text = "Buenas, ${contact.firstName} ${contact.lastName}",
                     replyMarkup = ReplyKeyboardRemove()
                 )
             }
@@ -212,22 +253,25 @@ fun main() {
                 }
                 bot.answerInlineQuery(inlineQuery.id, inlineResults)
             }
-
+            //Cuando envias una foto te devuelve un texto. En un grupo tendrias que responderle a un comentario del bot
             photos {
                 bot.sendMessage(
                     chatId = ChatId.fromId(message.chat.id),
-                    text = "Wowww, awesome photos!!! :P"
+                    text = "Muy buena foto"
                 )
             }
-
-            command("diceAsDartboard") {
+            /**
+             * @param dado nombre del comando
+             * Retorna un dado/diana en formato emoji que saca una puntuacion
+             */
+            command("dado") {
                 bot.sendDice(ChatId.fromId(message.chat.id), DiceEmoji.Dartboard)
             }
-
+            //cuando reenvias la diana a el bot por privado te devuelve la puntiacion
             dice {
-                bot.sendMessage(ChatId.fromId(message.chat.id), "A dice ${dice.emoji.emojiValue} with value ${dice.value} has been received!")
+                bot.sendMessage(ChatId.fromId(message.chat.id), "Un dado ${dice.emoji.emojiValue} con valor ${dice.value} ha sido recivido")
             }
-
+            //sale cuando suceda un error
             telegramError {
                 println(error.getErrorMessage())
             }
@@ -237,9 +281,13 @@ fun main() {
     bot.startPolling()
 
 }
+
+/**
+ * @return Retorna unos botones generdos
+ */
 fun generateUsersButton(): List<List<KeyboardButton>> {
     return listOf(
-        listOf(KeyboardButton("Request location (not supported on desktop)", requestLocation = true)),
-        listOf(KeyboardButton("Request contact", requestContact = true))
+        listOf(KeyboardButton("Te digo tu localizacion (no lo soporta el ordenador)", requestLocation = true)),
+        listOf(KeyboardButton("Envio tu numero de contacto ", requestContact = true))
     )
 }
