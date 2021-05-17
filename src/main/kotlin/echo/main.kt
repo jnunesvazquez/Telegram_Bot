@@ -19,11 +19,11 @@ fun main() {
             //Creamos un comando que devolvera un mensaje que nosotros indiquemos
             command("start") {
 
-                val result = bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "Hi there!")
+                val result = bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "Bot iniciado")
 
                 result.fold({
 
-                },{
+                }, {
                     // do something with the error
                 })
             }
