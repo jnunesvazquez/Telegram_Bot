@@ -41,7 +41,7 @@ command("poll") {
     }
 ~~~
 
-![Imagen Polls](Images\Polls.png)
+![Imagen Polls](Images/Polls.png)
 ### WebHook
 (Hemos intentado hacerlo pero nos hemos quedado a mitad del camino por falta de conocimiento y muchos intentos)
 
@@ -50,14 +50,14 @@ Para poder hacerlo se necesita un certificado del servidor de terceros, una URL 
 Despues de crear el enlace con nuestra URL, podremos recibir notificaciones de Telegram desde nuestro dominio
 > Proceso
 
-![Proceso_1](Images\Proceso_1.png)
-![Proceso_2_3](Images\Proceso_2_3.png)
-![Proceso_4](Images\Proceso_4.png)
+![Proceso_1](Images/Proceso_1.png)
+![Proceso_2_3](Images/Proceso_2_3.png)
+![Proceso_4](Images/Proceso_4.png)
 
 Generaremos estos cuatro archivos que se supone que tenemos que utilizar en el bot
 
-![Archivos_1](Images\Archivos_1.png)
-![Archivos_2](Images\Archivos_2.png)
+![Archivos_1](Images/Archivos_1.png)
+![Archivos_2](Images/Archivos_2.png)
 
 ### Nuestro Bot
 
