@@ -13,7 +13,7 @@ Si el echo esta activado, es capaz de reproducir cualquier mensaje que le indiqu
 
 ~~~
 command("start") {
-         val result = ourbot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "Hi there!")
+         val result = bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "Hi there!")
 }
 ~~~
 ### Dispatcher
@@ -23,7 +23,7 @@ Las polls se tratan de encuestas en las que podemos votar en encuestas de opinio
 
 ~~~
 command("poll") {
-        ourbot.sendPoll(
+        bot.sendPoll(
             chatId = ChatId.fromId(message.chat.id),
             type = QUIZ,
             question = "El mejor profesor de programacion?",
