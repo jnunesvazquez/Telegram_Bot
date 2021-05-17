@@ -1,4 +1,4 @@
-import Apikey.miApyKey
+/*import Apikey.miApyKey
 import com.github.kotlintelegrambot.bot
 import com.github.kotlintelegrambot.dispatch
 import com.github.kotlintelegrambot.dispatcher.command
@@ -66,4 +66,4 @@ fun main() {
         }
     }
     embeddedServer(Netty, env).start(wait = true)
-}
+}*/

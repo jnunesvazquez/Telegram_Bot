@@ -245,6 +245,8 @@ Generaremos estos cuatro archivos que se supone que tenemos que utilizar en el o
 
 ### Nuestro Bot
 
+Nuestro bot es sobre multimedia, dedicado a peliculas, nuestro grandioso dios director Clint Eastwood, fotos muy chulas y una carita sonriente al lado de un demonio. Puedes entrar a probar nuestras funciones y encontrar un *huevo de pascua* que hemos dejado
+
 ### Autores
 
 Joel Jorge Nunes Vázquez 

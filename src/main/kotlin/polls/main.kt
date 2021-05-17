@@ -4,7 +4,6 @@ import com.github.kotlintelegrambot.dispatch
 import com.github.kotlintelegrambot.dispatcher.command
 import com.github.kotlintelegrambot.dispatcher.pollAnswer
 import com.github.kotlintelegrambot.entities.ChatId
-import com.github.kotlintelegrambot.entities.ParseMode
 import com.github.kotlintelegrambot.entities.polls.PollType.QUIZ
 
 /**
@@ -62,6 +61,7 @@ fun main() {
                     openPeriod = 120,
                     //Permite que sean escogidas varias respuestas
                     allowsMultipleAnswers = true,
+                    correctOptionId = 4,
                     isAnonymous = false
                 )
             }
