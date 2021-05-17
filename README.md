@@ -1,6 +1,6 @@
 ## Bot de Telegram
 
- ### Indice
+### Indice
 
 > 1. Echo
 > 2. Dispatcher
@@ -13,7 +13,7 @@ Si el echo esta activado, es capaz de reproducir cualquier mensaje que le indiqu
 
 ~~~
 command("start") {
-         val result = bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "Hi there!")
+         val result = ourbot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "Hi there!")
 }
 ~~~
 ### Dispatcher
@@ -23,7 +23,7 @@ Las polls se tratan de encuestas en las que podemos votar en encuestas de opinio
 
 ~~~
 command("poll") {
-        bot.sendPoll(
+        ourbot.sendPoll(
             chatId = ChatId.fromId(message.chat.id),
             type = QUIZ,
             question = "El mejor profesor de programacion?",
@@ -54,7 +54,7 @@ Despues de crear el enlace con nuestra URL, podremos recibir notificaciones de T
 ![Proceso_2_3](Images/Proceso_2_3.png)
 ![Proceso_4](Images/Proceso_4.png)
 
-Generaremos estos cuatro archivos que se supone que tenemos que utilizar en el bot
+Generaremos estos cuatro archivos que se supone que tenemos que utilizar en el ourbot
 
 ![Archivos_1](Images/Archivos_1.png)
 ![Archivos_2](Images/Archivos_2.png)
