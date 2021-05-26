@@ -12,14 +12,11 @@ import com.github.kotlintelegrambot.entities.TelegramFile
 import com.github.kotlintelegrambot.entities.inputmedia.InputMediaPhoto
 import com.github.kotlintelegrambot.entities.inputmedia.MediaGroup
 import com.github.kotlintelegrambot.extensions.filters.Filter
-import com.github.kotlintelegrambot.entities.ChatId
-import com.github.kotlintelegrambot.network.fold
-
 
 /**
  * Clase con nuetro bot principal
  */
-class Bot{
+class mainBot{
 
     /**
      * Funcion para configurar un boton propio
@@ -33,7 +30,8 @@ class Bot{
             dispatch {
 
                 command("start") {
-                    val result = bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "Alguien quiere fiesta UwU")
+                    val result =
+                        bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "Alguien quiere fiesta UwU")
                 }
 
                 command("peliculas") {
@@ -70,7 +68,10 @@ class Bot{
                     )
                 }
                 message(Filter.Sticker) {
-                    bot.sendMessage(ChatId.fromId(message.chat.id), text = "¿En serio no tienes un esticker mejor para enviame?")
+                    bot.sendMessage(
+                        ChatId.fromId(message.chat.id),
+                        text = "¿En serio no tienes un esticker mejor para enviame?"
+                    )
                 }
 
                 message(Filter.Reply or Filter.Forward) {

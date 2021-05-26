@@ -1,6 +1,6 @@
 import dispatcher.Dispatcher
 import echo.Echo
-import ourbot.Bot
+import ourbot.mainBot
 import polls.Polls
 
 fun main(){
@@ -8,7 +8,7 @@ fun main(){
     val echo = Echo()
     val polls = Polls()
     val dispatcher = Dispatcher()
-    val ourBot = Bot()
+    val ourBot = mainBot()
     //echo.echo()
     ///polls.polls()
     //dispatcher.dispatcher()
