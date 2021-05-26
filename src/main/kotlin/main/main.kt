@@ -12,5 +12,5 @@ fun main(){
     //echo.echo()
     ///polls.polls()
     //dispatcher.dispatcher()
-    //ourBot.mainBot()
+    ourBot.mainBot()
 }

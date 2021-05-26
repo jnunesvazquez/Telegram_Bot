@@ -2,15 +2,15 @@ package ourbot
 
 import com.github.kotlintelegrambot.bot
 import com.github.kotlintelegrambot.dispatch
-import com.github.kotlintelegrambot.dispatcher.command
-import com.github.kotlintelegrambot.dispatcher.message
-import com.github.kotlintelegrambot.dispatcher.photos
-import com.github.kotlintelegrambot.dispatcher.text
+import com.github.kotlintelegrambot.dispatcher.*
 import com.github.kotlintelegrambot.entities.ChatId
+import com.github.kotlintelegrambot.entities.InlineKeyboardMarkup
 import com.github.kotlintelegrambot.entities.ParseMode
 import com.github.kotlintelegrambot.entities.TelegramFile
 import com.github.kotlintelegrambot.entities.inputmedia.InputMediaPhoto
 import com.github.kotlintelegrambot.entities.inputmedia.MediaGroup
+import com.github.kotlintelegrambot.entities.keyboard.InlineKeyboardButton
+import com.github.kotlintelegrambot.entities.keyboard.KeyboardButton
 import com.github.kotlintelegrambot.extensions.filters.Filter
 
 /**
@@ -113,6 +113,33 @@ class mainBot{
                 }
                 text("quiero") {
                     bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "Mi 10")
+                }
+                command("inlinebuttons") {
+                    val inlineKeyboardMarkup = InlineKeyboardMarkup.create(
+                        //text es el texto que aparece en el boton
+                        //callbackData Retoena el callbackQuery asociado (linea de codigo )
+                        listOf(InlineKeyboardButton.CallbackData(text = "Presioname", callbackData = "Madre mia")),
+                        //text es el texto que aparece en el boton
+                        //callbackData Retoena el callbackQuery asociado (linea de codigo )
+                        listOf(InlineKeyboardButton.CallbackData(text = "Hola", callbackData = "Quiero mi 10"))
+                    )
+                    bot.sendMessage(
+                        chatId = ChatId.fromId(message.chat.id),
+                        text = "Mis botones, pulsalos a placer",
+                        replyMarkup = inlineKeyboardMarkup
+                    )
+                }
+                callbackQuery("Madre mia") {
+                    val chatId = callbackQuery.message?.chat?.id ?: return@callbackQuery
+                    bot.sendMessage(ChatId.fromId(chatId), callbackQuery.data)
+                }
+                callbackQuery(
+                    callbackData = "Quiero mi 10",
+                    callbackAnswerText = "Por el duro esfuerzo en realizar esta tarea quiero mi 10, no espero menos que eso",
+                    callbackAnswerShowAlert = true
+                ) {
+                    val chatId = callbackQuery.message?.chat?.id ?: return@callbackQuery
+                    bot.sendMessage(ChatId.fromId(chatId), callbackQuery.data)
                 }
             }
         }
