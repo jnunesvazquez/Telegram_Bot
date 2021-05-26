@@ -12,6 +12,9 @@ import com.github.kotlintelegrambot.entities.TelegramFile
 import com.github.kotlintelegrambot.entities.inputmedia.InputMediaPhoto
 import com.github.kotlintelegrambot.entities.inputmedia.MediaGroup
 import com.github.kotlintelegrambot.extensions.filters.Filter
+import com.github.kotlintelegrambot.entities.ChatId
+import com.github.kotlintelegrambot.network.fold
+
 
 /**
  * Clase con nuetro bot principal
